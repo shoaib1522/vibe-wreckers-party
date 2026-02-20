@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { Music, Users, Zap } from "lucide-react";
+import { Swords, Users, Zap, Shield, Crosshair } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import heroBg from "@/assets/hero-bg.jpg";
 
@@ -17,95 +17,92 @@ const Index = () => {
 
   return (
     <div className="relative flex min-h-screen flex-col items-center justify-center overflow-hidden bg-background">
-      {/* Background image */}
+      {/* Background */}
       <div className="absolute inset-0 z-0">
-        <img src={heroBg} alt="" className="h-full w-full object-cover opacity-30" />
-        <div className="absolute inset-0 bg-gradient-to-t from-background via-background/80 to-background/40" />
+        <img src={heroBg} alt="" className="h-full w-full object-cover opacity-40" />
+        <div className="absolute inset-0 bg-gradient-to-t from-background via-background/70 to-background/30" />
       </div>
 
-      {/* Animated equalizer bars */}
-      <div className="absolute bottom-0 left-0 right-0 z-0 flex items-end justify-center gap-1 pb-0 opacity-20">
-        {Array.from({ length: 40 }).map((_, i) => (
-          <div
+      {/* Floating emojis */}
+      <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
+        {["💣", "🎵", "⚔️", "🔥", "💀", "🎸", "🛡️", "🎯"].map((emoji, i) => (
+          <span
             key={i}
-            className="w-1.5 rounded-t bg-primary"
+            className="absolute text-3xl opacity-20 animate-float"
             style={{
-              height: `${Math.random() * 60 + 10}px`,
-              animation: `equalizer ${0.8 + Math.random() * 0.8}s ease-in-out infinite`,
-              animationDelay: `${i * 0.05}s`,
+              left: `${10 + i * 12}%`,
+              top: `${15 + (i % 3) * 25}%`,
+              animationDelay: `${i * 0.3}s`,
+              animationDuration: `${2 + i * 0.2}s`,
             }}
-          />
+          >
+            {emoji}
+          </span>
         ))}
       </div>
 
       {/* Content */}
       <div className="relative z-10 flex flex-col items-center gap-8 px-6 text-center">
-        {/* Logo / Title */}
-        <div className="animate-slide-up">
-          <div className="mb-4 flex items-center justify-center gap-3">
-            <Music className="h-10 w-10 text-primary" />
-            <Zap className="h-6 w-6 text-accent" />
+        {/* Title */}
+        <div className="animate-slam-down">
+          <div className="mb-3 flex items-center justify-center gap-2">
+            <Swords className="h-8 w-8 text-accent" />
+            <span className="font-display text-lg text-accent">⚡ MUSIC WARFARE ⚡</span>
+            <Swords className="h-8 w-8 text-accent" />
           </div>
-          <h1 className="font-display text-6xl font-black tracking-tight text-foreground sm:text-8xl">
+          <h1 className="font-display text-7xl text-foreground sm:text-9xl leading-none" style={{ WebkitTextStroke: '2px hsl(25, 95%, 35%)' }}>
             VIBE
+            <br />
             <span className="text-primary text-glow-primary">CHECK</span>
           </h1>
-          <p className="mt-4 max-w-md font-body text-lg text-muted-foreground">
-            Someone is sabotaging the playlist.
+          <p className="mt-4 max-w-sm font-body text-base text-secondary-foreground">
+            Someone's <span className="font-bold text-accent">sabotaging</span> the playlist.
             <br />
-            <span className="text-accent">Find them before the vibe dies.</span>
+            Hunt them down. <span className="font-bold text-primary">No mercy.</span> 💥
           </p>
         </div>
 
-        {/* Action Buttons */}
-        <div className="flex flex-col items-center gap-4 animate-slide-up" style={{ animationDelay: "0.2s" }}>
+        {/* Buttons */}
+        <div className="flex flex-col items-center gap-4 animate-slide-up" style={{ animationDelay: "0.3s" }}>
           <Button variant="hero" size="xl" onClick={() => navigate("/create")}>
-            <Users className="mr-2 h-5 w-5" />
-            Create Room
+            <Swords className="mr-2 h-6 w-6" />
+            Create Battle
           </Button>
 
           {!showJoin ? (
             <Button variant="outline" size="lg" onClick={() => setShowJoin(true)}>
-              Join Room
+              <Crosshair className="mr-1 h-4 w-4" />
+              Join Fight
             </Button>
           ) : (
             <div className="flex items-center gap-2">
               <input
                 type="text"
                 maxLength={6}
-                placeholder="ROOM CODE"
+                placeholder="CODE"
                 value={joinCode}
                 onChange={(e) => setJoinCode(e.target.value.toUpperCase())}
-                className="h-12 w-40 rounded-lg border border-primary/30 bg-secondary/50 px-4 text-center font-display text-xl font-bold tracking-[0.3em] text-foreground placeholder:text-muted-foreground focus:border-primary focus:outline-none focus:glow-primary"
+                className="h-12 w-36 rounded-xl border-2 border-primary/40 bg-card px-4 text-center font-display text-2xl tracking-[0.3em] text-foreground placeholder:text-muted-foreground focus:border-primary focus:outline-none"
                 autoFocus
               />
-              <Button
-                variant="default"
-                size="lg"
-                onClick={handleJoin}
-                disabled={joinCode.length !== 6}
-              >
-                GO
+              <Button variant="default" size="lg" onClick={handleJoin} disabled={joinCode.length !== 6}>
+                ⚔️ GO
               </Button>
             </div>
           )}
         </div>
 
-        {/* Features */}
-        <div
-          className="mt-8 grid max-w-lg grid-cols-3 gap-6 animate-slide-up"
-          style={{ animationDelay: "0.4s" }}
-        >
+        {/* Feature cards */}
+        <div className="mt-6 grid max-w-md grid-cols-3 gap-4 animate-slide-up" style={{ animationDelay: "0.5s" }}>
           {[
-            { icon: "🎵", label: "Queue Songs" },
-            { icon: "🕵️", label: "Find the Spy" },
-            { icon: "🗳️", label: "Vote Them Out" },
+            { icon: "🎵", label: "Load Ammo", sub: "Queue songs" },
+            { icon: "🕵️", label: "Hunt Spy", sub: "Find saboteur" },
+            { icon: "💣", label: "Nuke 'Em", sub: "Vote them out" },
           ].map((f) => (
-            <div key={f.label} className="flex flex-col items-center gap-2 glass rounded-xl p-4">
-              <span className="text-2xl">{f.icon}</span>
-              <span className="font-display text-xs font-semibold tracking-wide text-muted-foreground uppercase">
-                {f.label}
-              </span>
+            <div key={f.label} className="battle-card flex flex-col items-center gap-2 p-4 hover:scale-105 transition-transform cursor-default">
+              <span className="text-3xl animate-float">{f.icon}</span>
+              <span className="font-display text-sm text-primary">{f.label}</span>
+              <span className="font-body text-xs text-muted-foreground">{f.sub}</span>
             </div>
           ))}
         </div>

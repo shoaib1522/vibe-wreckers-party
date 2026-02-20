@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bangers&family=Rubik:wght@400;500;600;700;800;900&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -6,60 +6,62 @@
 
 @layer base {
   :root {
-    --background: 230 25% 7%;
-    --foreground: 200 20% 95%;
+    --background: 35 30% 8%;
+    --foreground: 45 100% 96%;
 
-    --card: 230 20% 11%;
-    --card-foreground: 200 20% 95%;
+    --card: 30 25% 12%;
+    --card-foreground: 45 100% 96%;
 
-    --popover: 230 20% 11%;
-    --popover-foreground: 200 20% 95%;
+    --popover: 30 25% 12%;
+    --popover-foreground: 45 100% 96%;
 
-    --primary: 185 100% 50%;
-    --primary-foreground: 230 25% 7%;
+    --primary: 45 100% 55%;
+    --primary-foreground: 35 30% 8%;
 
-    --secondary: 230 15% 18%;
-    --secondary-foreground: 200 20% 85%;
+    --secondary: 25 20% 18%;
+    --secondary-foreground: 45 80% 90%;
 
-    --muted: 230 15% 15%;
-    --muted-foreground: 220 10% 50%;
+    --muted: 25 15% 16%;
+    --muted-foreground: 30 15% 50%;
 
-    --accent: 320 100% 60%;
-    --accent-foreground: 0 0% 100%;
+    --accent: 0 85% 55%;
+    --accent-foreground: 45 100% 96%;
 
-    --destructive: 0 80% 55%;
-    --destructive-foreground: 0 0% 100%;
+    --destructive: 0 85% 55%;
+    --destructive-foreground: 45 100% 96%;
 
-    --border: 230 15% 20%;
-    --input: 230 15% 20%;
-    --ring: 185 100% 50%;
+    --border: 30 15% 22%;
+    --input: 30 15% 22%;
+    --ring: 45 100% 55%;
 
-    --radius: 0.75rem;
+    --radius: 1rem;
 
-    --saboteur: 320 100% 60%;
-    --vibe-keeper: 185 100% 50%;
-    --vibe-good: 140 70% 50%;
-    --vibe-mid: 45 90% 55%;
-    --vibe-bad: 0 80% 55%;
+    --battle-orange: 25 95% 55%;
+    --battle-red: 0 85% 50%;
+    --battle-green: 120 60% 45%;
+    --battle-blue: 210 90% 55%;
+    --battle-purple: 280 70% 55%;
+    --saboteur: 0 85% 55%;
+    --vibe-keeper: 120 60% 45%;
+    --vibe-good: 120 60% 45%;
+    --vibe-mid: 45 100% 55%;
+    --vibe-bad: 0 85% 50%;
 
-    --glow-primary: 0 0 20px hsl(185 100% 50% / 0.4), 0 0 60px hsl(185 100% 50% / 0.15);
-    --glow-accent: 0 0 20px hsl(320 100% 60% / 0.4), 0 0 60px hsl(320 100% 60% / 0.15);
-    --glow-vibe: 0 0 20px hsl(140 70% 50% / 0.4);
+    --glow-primary: 0 0 15px hsl(45 100% 55% / 0.5), 0 0 40px hsl(45 100% 55% / 0.2);
+    --glow-accent: 0 0 15px hsl(0 85% 55% / 0.5), 0 0 40px hsl(0 85% 55% / 0.2);
+    --glow-green: 0 0 15px hsl(120 60% 45% / 0.5), 0 0 40px hsl(120 60% 45% / 0.2);
 
-    --glass-bg: hsl(230 20% 11% / 0.6);
-    --glass-border: hsl(200 20% 95% / 0.08);
+    --font-display: 'Bangers', cursive;
+    --font-body: 'Rubik', sans-serif;
 
-    --font-display: 'Outfit', sans-serif;
-    --font-body: 'Space Grotesk', sans-serif;
-
-    --sidebar-background: 230 20% 11%;
-    --sidebar-foreground: 200 20% 95%;
-    --sidebar-primary: 185 100% 50%;
-    --sidebar-primary-foreground: 230 25% 7%;
-    --sidebar-accent: 230 15% 18%;
-    --sidebar-accent-foreground: 200 20% 85%;
-    --sidebar-border: 230 15% 20%;
-    --sidebar-ring: 185 100% 50%;
+    --sidebar-background: 30 25% 12%;
+    --sidebar-foreground: 45 100% 96%;
+    --sidebar-primary: 45 100% 55%;
+    --sidebar-primary-foreground: 35 30% 8%;
+    --sidebar-accent: 25 20% 18%;
+    --sidebar-accent-foreground: 45 80% 90%;
+    --sidebar-border: 30 15% 22%;
+    --sidebar-ring: 45 100% 55%;
   }
 }
 
@@ -75,14 +77,15 @@
 
   h1, h2, h3, h4, h5, h6 {
     font-family: var(--font-display);
+    letter-spacing: 0.04em;
   }
 }
 
 @layer utilities {
   .glass {
-    background: var(--glass-bg);
-    border: 1px solid var(--glass-border);
-    backdrop-filter: blur(16px);
+    background: hsl(30 25% 12% / 0.7);
+    border: 2px solid hsl(45 100% 55% / 0.15);
+    backdrop-filter: blur(12px);
   }
 
   .glow-primary {
@@ -93,23 +96,75 @@
     box-shadow: var(--glow-accent);
   }
 
-  .glow-vibe {
-    box-shadow: var(--glow-vibe);
+  .glow-green {
+    box-shadow: var(--glow-green);
   }
 
   .text-glow-primary {
-    text-shadow: 0 0 20px hsl(185 100% 50% / 0.6);
+    text-shadow: 0 0 20px hsl(45 100% 55% / 0.6), 0 2px 0 hsl(25 95% 35%);
   }
 
   .text-glow-accent {
-    text-shadow: 0 0 20px hsl(320 100% 60% / 0.6);
+    text-shadow: 0 0 20px hsl(0 85% 55% / 0.6), 0 2px 0 hsl(0 60% 30%);
   }
 
   .font-display {
     font-family: var(--font-display);
+    letter-spacing: 0.04em;
   }
 
   .font-body {
     font-family: var(--font-body);
+  }
+
+  .comic-border {
+    border: 3px solid hsl(var(--foreground));
+    box-shadow: 4px 4px 0 hsl(var(--foreground) / 0.3);
+  }
+
+  .battle-card {
+    background: hsl(30 25% 14%);
+    border: 3px solid hsl(45 100% 55% / 0.3);
+    border-radius: 1rem;
+    box-shadow: 0 4px 0 hsl(25 95% 35% / 0.4), 0 8px 20px hsl(0 0% 0% / 0.3);
+  }
+
+  .btn-3d {
+    box-shadow: 0 4px 0 hsl(25 95% 35%), 0 6px 10px hsl(0 0% 0% / 0.3);
+    transform: translateY(0);
+    transition: all 0.1s;
+  }
+
+  .btn-3d:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 0 hsl(25 95% 35%), 0 8px 14px hsl(0 0% 0% / 0.3);
+  }
+
+  .btn-3d:active {
+    transform: translateY(2px);
+    box-shadow: 0 2px 0 hsl(25 95% 35%), 0 3px 6px hsl(0 0% 0% / 0.3);
+  }
+
+  .btn-3d-red {
+    box-shadow: 0 4px 0 hsl(0 60% 35%), 0 6px 10px hsl(0 0% 0% / 0.3);
+  }
+
+  .btn-3d-red:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 0 hsl(0 60% 35%), 0 8px 14px hsl(0 0% 0% / 0.3);
+  }
+
+  .btn-3d-red:active {
+    transform: translateY(2px);
+    box-shadow: 0 2px 0 hsl(0 60% 35%), 0 3px 6px hsl(0 0% 0% / 0.3);
+  }
+
+  .btn-3d-green {
+    box-shadow: 0 4px 0 hsl(120 40% 30%), 0 6px 10px hsl(0 0% 0% / 0.3);
+  }
+
+  .btn-3d-green:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 0 hsl(120 40% 30%), 0 8px 14px hsl(0 0% 0% / 0.3);
   }
 }

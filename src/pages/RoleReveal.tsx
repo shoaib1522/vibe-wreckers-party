@@ -10,86 +10,95 @@ const RoleReveal = () => {
   const [phase, setPhase] = useState<"loading" | "reveal" | "ready">("loading");
 
   useEffect(() => {
-    const t1 = setTimeout(() => setPhase("reveal"), 1500);
-    const t2 = setTimeout(() => setPhase("ready"), 3500);
-    return () => {
-      clearTimeout(t1);
-      clearTimeout(t2);
-    };
+    const t1 = setTimeout(() => setPhase("reveal"), 2000);
+    const t2 = setTimeout(() => setPhase("ready"), 4500);
+    return () => { clearTimeout(t1); clearTimeout(t2); };
   }, []);
 
   return (
     <div className="flex min-h-screen flex-col items-center justify-center bg-background px-6">
       {phase === "loading" && (
-        <div className="flex flex-col items-center gap-4 animate-fade-in">
-          <div className="h-16 w-16 rounded-full border-4 border-primary/30 border-t-primary animate-spin" />
-          <p className="font-display text-lg font-semibold text-muted-foreground">
-            Assigning roles...
+        <div className="flex flex-col items-center gap-6 animate-fade-in">
+          <div className="relative">
+            <div className="h-20 w-20 rounded-full border-4 border-primary/30 border-t-primary animate-spin" />
+            <span className="absolute inset-0 flex items-center justify-center text-3xl">⚔️</span>
+          </div>
+          <p className="font-display text-2xl text-foreground animate-pulse">
+            Assigning Roles...
+          </p>
+          <p className="font-body text-sm text-muted-foreground">
+            Choosing who will betray the squad 💀
           </p>
         </div>
       )}
 
       {phase === "reveal" && (
         <div className="flex flex-col items-center gap-6 text-center animate-dramatic-reveal">
+          {/* Big icon */}
           <div
-            className={`flex h-32 w-32 items-center justify-center rounded-full text-6xl ${
-              isSaboteur ? "bg-accent/20 glow-accent" : "bg-primary/20 glow-primary"
+            className={`flex h-36 w-36 items-center justify-center rounded-full text-7xl ${
+              isSaboteur
+                ? "bg-accent/20 border-4 border-accent animate-war-pulse"
+                : "bg-battle-green/20 border-4 border-battle-green glow-green"
             }`}
           >
-            {isSaboteur ? "🎭" : "🎧"}
+            {isSaboteur ? "💀" : "🛡️"}
           </div>
+
+          {/* Role text */}
           <div>
-            <div className="mb-2 font-display text-sm font-semibold uppercase tracking-widest text-muted-foreground">
-              You are the
+            <div className="mb-2 font-display text-lg text-muted-foreground">
+              YOU ARE THE
             </div>
             <h1
-              className={`font-display text-5xl font-black sm:text-7xl ${
+              className={`font-display text-6xl sm:text-8xl leading-none ${
                 isSaboteur ? "text-accent text-glow-accent" : "text-primary text-glow-primary"
               }`}
             >
               {isSaboteur ? "SABOTEUR" : "VIBE"}
             </h1>
             <h2
-              className={`font-display text-3xl font-black sm:text-5xl ${
+              className={`font-display text-4xl sm:text-5xl ${
                 isSaboteur ? "text-accent/70" : "text-primary/70"
               }`}
             >
-              {isSaboteur ? "DJ" : "KEEPER"}
+              {isSaboteur ? "☠️ SPY ☠️" : "⚔️ WARRIOR ⚔️"}
             </h2>
           </div>
-          <p className="max-w-xs font-body text-muted-foreground">
+
+          <p className="max-w-xs font-body text-secondary-foreground">
             {isSaboteur
-              ? "Sabotage the playlist. Add off-vibe songs. Don't get caught."
-              : "Keep the vibe alive. Watch for suspicious song choices. Vote out the saboteur."}
+              ? "Infiltrate the playlist. Drop vibe-killing tracks. Survive undetected. 🎭"
+              : "Defend the vibe. Spot the imposter. Vote them out before it's too late. 🔍"}
           </p>
         </div>
       )}
 
       {phase === "ready" && (
-        <div className="flex flex-col items-center gap-6 text-center">
+        <div className="flex flex-col items-center gap-6 text-center animate-bounce-in">
           <div
             className={`flex h-24 w-24 items-center justify-center rounded-full text-5xl ${
-              isSaboteur ? "bg-accent/20" : "bg-primary/20"
+              isSaboteur ? "bg-accent/20 border-3 border-accent" : "bg-battle-green/20 border-3 border-battle-green"
             }`}
           >
-            {isSaboteur ? "🎭" : "🎧"}
+            {isSaboteur ? "💀" : "🛡️"}
           </div>
           <h2
-            className={`font-display text-3xl font-black ${
+            className={`font-display text-3xl ${
               isSaboteur ? "text-accent" : "text-primary"
             }`}
           >
-            {isSaboteur ? "SABOTEUR DJ" : "VIBE KEEPER"}
+            {isSaboteur ? "SABOTEUR SPY" : "VIBE WARRIOR"}
           </h2>
           <button
             onClick={() => navigate(`/game?role=${role}`)}
-            className={`mt-4 rounded-xl px-10 py-4 font-display text-lg font-bold uppercase tracking-wider transition-all hover:scale-105 ${
+            className={`rounded-2xl px-12 py-5 font-display text-xl transition-all ${
               isSaboteur
-                ? "bg-accent text-accent-foreground glow-accent"
-                : "bg-primary text-primary-foreground glow-primary"
+                ? "bg-accent text-accent-foreground btn-3d-red"
+                : "bg-primary text-primary-foreground btn-3d"
             }`}
           >
-            Let's Go
+            {isSaboteur ? "🎭 Begin Infiltration" : "⚔️ Enter Battle"}
           </button>
         </div>
       )}
